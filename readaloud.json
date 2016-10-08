@@ -1,0 +1,167 @@
+{
+   "accuracy" : 0,
+   "confidence" : 0,
+   "fluency" : 97,
+   "integrity" : 0,
+   "intonation" : 0,
+   "locale" : "en",
+   "overall" : 74,
+   "pronunciation" : 68,
+   "stress" : 0,
+   "tempo" : 0,
+   "version" : "0.0.1",
+   "words" : [
+      {
+         "scores" : {
+            "intonation" : 0,
+            "overall" : 66,
+            "pronunciation" : 66,
+            "stress" : 0,
+            "tempo" : 0,
+            "tone" : 0
+         },
+         "stats" : {
+            "end" : 147,
+            "facost" : -28.36208152770996,
+            "rawgop" : -28.36208152770996,
+            "recost" : 0.0,
+            "start" : 102,
+            "stress_pattern" : 0
+         },
+         "syllables" : [
+            {
+               "phones" : [
+                  {
+                     "letters" : "HH",
+                     "phone" : "HH",
+                     "scores" : {
+                        "pronunciation" : 71
+                     },
+                     "stats" : {
+                        "ascr" : -6.203642845153809,
+                        "end" : 111,
+                        "start" : 102
+                     }
+                  },
+                  {
+                     "letters" : "AH",
+                     "phone" : "AH",
+                     "scores" : {
+                        "pronunciation" : 61
+                     },
+                     "stats" : {
+                        "ascr" : -3.532854795455933,
+                        "end" : 117,
+                        "start" : 111
+                     }
+                  },
+                  {
+                     "letters" : "L",
+                     "phone" : "L",
+                     "scores" : {
+                        "pronunciation" : 78
+                     },
+                     "stats" : {
+                        "ascr" : -7.271276950836182,
+                        "end" : 126,
+                        "start" : 117
+                     }
+                  },
+                  {
+                     "letters" : "OW",
+                     "phone" : "OW",
+                     "scores" : {
+                        "pronunciation" : 55
+                     },
+                     "stats" : {
+                        "ascr" : -11.35430908203125,
+                        "end" : 147,
+                        "start" : 126
+                     }
+                  }
+               ],
+               "scores" : {
+                  "intonation" : 0,
+                  "stress" : -2147483648
+               },
+               "stats" : {
+                  "end" : 0,
+                  "start" : 0,
+                  "stress_pattern" : 32514
+               }
+            }
+         ],
+         "word" : "hello"
+      },
+      {
+         "scores" : {
+            "intonation" : 0,
+            "overall" : 72,
+            "pronunciation" : 72,
+            "stress" : 0,
+            "tempo" : 0,
+            "tone" : 0
+         },
+         "stats" : {
+            "end" : 192,
+            "facost" : -29.08341026306152,
+            "rawgop" : -29.08341026306152,
+            "recost" : 0.0,
+            "start" : 150,
+            "stress_pattern" : 0
+         },
+         "syllables" : [
+            {
+               "phones" : [
+                  {
+                     "letters" : "DH",
+                     "phone" : "DH",
+                     "scores" : {
+                        "pronunciation" : 76
+                     },
+                     "stats" : {
+                        "ascr" : -6.955035209655762,
+                        "end" : 159,
+                        "start" : 150
+                     }
+                  },
+                  {
+                     "letters" : "EH",
+                     "phone" : "EH",
+                     "scores" : {
+                        "pronunciation" : 53
+                     },
+                     "stats" : {
+                        "ascr" : -6.276772022247314,
+                        "end" : 171,
+                        "start" : 159
+                     }
+                  },
+                  {
+                     "letters" : "R",
+                     "phone" : "R",
+                     "scores" : {
+                        "pronunciation" : 75
+                     },
+                     "stats" : {
+                        "ascr" : -15.85160255432129,
+                        "end" : 192,
+                        "start" : 171
+                     }
+                  }
+               ],
+               "scores" : {
+                  "intonation" : 0,
+                  "stress" : -2147483648
+               },
+               "stats" : {
+                  "end" : 0,
+                  "start" : 0,
+                  "stress_pattern" : 32514
+               }
+            }
+         ],
+         "word" : "there"
+      }
+   ]
+}
