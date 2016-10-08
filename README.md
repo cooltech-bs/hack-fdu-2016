@@ -229,4 +229,18 @@ META文件内容:
          "word" : "weekend"
       }
    ]
-}```
+}
+```
+
+### 句子评分服务
+语音数据的请求方式和语音识别一样，唯一不同的地方是传入的META文件内容不同
+META文件内容
+```
+{
+    "quality":-1,
+    "type":"readaloud",
+    "reftext":"hello nice to meet you" //要评分的句子的文本
+}
+```
+
+[返回结果](http://example.net/)
