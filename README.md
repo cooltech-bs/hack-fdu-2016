@@ -1,7 +1,7 @@
 # hack-fdu-2016
 API instructions and examples for hack-fdu-2016
 
-### 语法检错服务
+### 1)语法检错服务
 Dependency: 需要配置grpc和protobuf
 
 输入一段文本，返回这句话可能有的语法错误。比如输入 i do not play the football，返回 冠词使用错误：在the football 中应删除冠词the
@@ -59,7 +59,7 @@ def grammar_correct():
 
 ```
 
-### 语义相似度计算服务
+### 2)语义相似度计算服务
 Dependency: 需要配置grpc和protobuf
 
 输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.8194(相似度值落在[0,1]区间内，值越大表示越相似)
@@ -124,7 +124,7 @@ if __name__ == '__main__':
 ```
 TO BE ADDED
 ```
-### 语音识别服务
+### 3)语音识别服务
 目前支持英语的ASR，支持的音频格式是 16k 采样率，mono wav
 
 语音数据使用HTTP请求，以stream方式上传到服务器，遵循的协议格式如下
@@ -217,7 +217,7 @@ META文件内容:
    "decoded" : "hackers weekend ", //整体识别结果
    "details" : [
       {
-         "confidence" : 97, //识别的置信度0~100
+         "confidence" : 97, //识别的置信度0~100，数值越大表明越可信
          "end" : 171, //单词结束时间
          "start" : 111, //单词起始时间
          "word" : "hackers" //识别出的单词
@@ -232,14 +232,14 @@ META文件内容:
 }
 ```
 
-### 句子评分服务
+### 4)句子评分服务
 语音数据的请求方式和语音识别一样，唯一不同的地方是传入的META文件内容不同
 META文件内容
 ```
 {
     "quality":-1,
     "type":"readaloud",
-    "reftext":"hello nice to meet you" //要评分的句子的文本
+    "reftext":"hello nice to meet you" //要评分的句子的文本，去掉标点符号，全部转换成小写
 }
 ```
 
