@@ -243,4 +243,4 @@ META文件内容
 }
 ```
 
-[返回结果](http://example.net/)
+[返回结果](https://github.com/yxf0605/hack-fdu-2016/blob/master/readaloud.json)
