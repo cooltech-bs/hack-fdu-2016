@@ -6,43 +6,12 @@ Dependency: 需要配置grpc和protobuf
 
 输入一段文本，返回这句话可能有的语法错误。比如输入 i do not play the football，返回 冠词使用错误：在the football 中应删除冠词the
 
-proto file:
-``` 
-syntax = "proto3";
+[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/grammar_res/grammar_service.proto)
 
-option java_package = "com.engzo.grpc.examples";
-
-package grammarservice;
-
-// The greeting service definition.
-service GrammarService {
-  // Sends a greeting
-  rpc Ping (PingRequest) returns (PingReply) {}
-  rpc GrammarCorrect (GrammarCorrectRequest) returns (GrammarCorrectReply) {}
-}
-
-//The Heartbeat request
-message PingRequest {
-  string message = 1;
-}
-
-message GrammarCorrectRequest {
-  string content = 1;
-  string error_type = 2;
-}
-// The Heartbeat response 
-message PingReply {
-  string message = 1;
-}
-
-message GrammarCorrectReply {
-  string message = 1;
-}
-```
-返回结果格式(样例)：
+返回结果(样例)：
 ```
 输入：There is a lot of book.
-输出: 主谓一致错误:There is a中的is。
+输出（Unicode）: 主谓一致错误:There is a中的is。
 
 ```
 
@@ -77,39 +46,8 @@ Dependency: 需要配置grpc和protobuf
 
 输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.777210439668(相似度值落在[0,1]区间内，值越大表示越相似)
 
-proto file:
-```
-syntax = "proto3";
+[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/semantic_res/semantic_sim.proto)
 
-option java_package = "com.engzo.grpc.examples";
-
-package semantic;
-
-// The greeting service definition.
-service Semantic {
-  // Sends a greeting
-  rpc Ping (PingRequest) returns (PingReply) {}
-  rpc Communicate(ASRRequest) returns (NLPReply) {}
-}
-
-//The Heartbeat request
-message PingRequest {
-  string message = 1;
-}
-
-// The Heartbeat response 
-message PingReply {
-  string message = 1;
-}
-
-message ASRRequest {
-  string message = 1;
-}
-
-message NLPReply {
-  string message = 1;
-}
-```
 
 参考代码：
 ```
