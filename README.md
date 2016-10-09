@@ -15,7 +15,7 @@ Dependency: 需要配置grpc和protobuf
 
 ```
 
-服务器/端口号：172.31.12.203:50054
+服务器/端口号：54.222.198.42:50054
 
 参考代码：
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
 ```
 
-服务器/端口号：172.31.12.203:50067
+服务器/端口号：54.222.198.42:50067
 
 返回结果格式：
 ```
@@ -162,7 +162,7 @@ META文件内容:
 }
 ```
 
-服务器/端口/URL: 172.31.13.159:8281 /llcup/stream/upload
+服务器/端口/URL: 54.223.187.43:8281 /llcup/stream/upload
 
 返回结果：
 ```
@@ -196,5 +196,7 @@ META文件内容
     "reftext":"hello nice to meet you" //要评分的句子的文本，去掉标点符号，全部转换成小写
 }
 ```
+
+服务器/端口/URL: 54.223.187.43:8281 /llcup/stream/upload
 
 [返回结果](https://github.com/yxf0605/hack-fdu-2016/blob/master/readaloud.json)
