@@ -39,9 +39,11 @@ message GrammarCorrectReply {
   string message = 1;
 }
 ```
-返回结果格式：
+返回结果格式(样例)：
 ```
-TO BE ADDED
+输入：There is a lot of book.
+输出: 主谓一致错误:There is a中的is。
+
 ```
 
 服务器/端口号：172.31.12.203:50054
@@ -49,20 +51,31 @@ TO BE ADDED
 参考代码：
 
 ```
+"""The Python implementation of the GRPC grammar_service.GrammarService client."""
+
+import grpc
+import grammar_service_pb2
+
+_TIMEOUT_SECONDS = 10
+
 def grammar_correct():
-  with grammarservice_pb2.early_adopter_create_GrammarService_stub('172.31.12.203', 50054) as stub:
+    channel = grpc.insecure_channel('%s:%d' % ('0.0.0.0', 50054))
+    stub = grammar_service_pb2.GrammarServiceStub(channel)
     while True:
         txt = raw_input("Input>>>")
         if txt == 'exit': break
-        response = stub.GrammarCorrect(grammarservice_pb2.GrammarCorrectRequest(content = txt, error_type = ""), _TIMEOUT_SECONDS)
+        response = stub.GrammarCorrect(grammar_service_pb2.GrammarCorrectRequest(content = txt, error_type = ""), _TIMEOUT_SECONDS)
         print "Correct result", response.message
+
+if __name__ == '__main__':
+    grammar_correct()
 
 ```
 
 ### 2)语义相似度计算服务
 Dependency: 需要配置grpc和protobuf
 
-输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.8194(相似度值落在[0,1]区间内，值越大表示越相似)
+输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.777210439668(相似度值落在[0,1]区间内，值越大表示越相似)
 
 proto file:
 ```
@@ -100,29 +113,32 @@ message NLPReply {
 
 参考代码：
 ```
-import semantic_pb2
+"""The Python implementation of the GRPC semantic_sim.SemanticSim client."""
+
+import grpc
+import semantic_sim_pb2
 
 _TIMEOUT_SECONDS = 10
 
-
-def run():
-  with semantic_pb2.early_adopter_create_Semantic_stub('0.0.0.0', 50099) as stub:
-    #response = stub.Ping(semantic_pb2.PingRequest(message='Ping'), _TIMEOUT_SECONDS)
-    #print "Ping client received: " + response.message
-    #sentences = raw_input('Please input: ')
-    sentences = 'i have a nice bag but it is his###i want this bag' 
-    response = stub.Communicate(semantic_pb2.ASRRequest(message=sentences), _TIMEOUT_SECONDS)
-    print response
+def get_similarity(sent_pair):
+    channel = grpc.insecure_channel('%s:%d' % ('0.0.0.0', 50067))
+    stub = semantic_sim_pb2.SemanticSimStub(channel)
+    response = stub.Communicate(semantic_sim_pb2.ASRRequest(message=sent_pair), _TIMEOUT_SECONDS)
+    print "Similarity: " + response.message
 
 if __name__ == '__main__':
-  run()
+    sent1 = raw_input('Sentence 1: ')
+    sent2 = raw_input('Sentence 2: ')
+    sent_pair = sent1+'###'+sent2
+    get_similarity(sent_pair) 
+
 ```
 
-服务器/端口号：172.31.12.203:50099
+服务器/端口号：172.31.12.203:50067
 
 返回结果格式：
 ```
-TO BE ADDED
+浮点数的 unicode 字符串格式
 ```
 ### 3)语音识别服务
 目前支持英语的ASR，支持的音频格式是 16k 采样率，mono wav
