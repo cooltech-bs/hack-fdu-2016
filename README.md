@@ -46,7 +46,7 @@ Dependency: 需要配置grpc和protobuf
 
 输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.777210439668(相似度值落在[0,1]区间内，值越大表示越相似)
 
-[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/grammar_res/semantic_sim.proto)
+[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/semantic_res/semantic_sim.proto)
 
 
 参考代码：
