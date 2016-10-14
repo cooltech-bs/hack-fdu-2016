@@ -2,7 +2,7 @@
 API instructions and examples for hack-fdu-2016
 
 ### 1)语法检错服务
-Dependency: 需要配置grpc和protobuf
+Dependency: 需要配置 [grpc](http://www.grpc.io/) 和 [protobuf](https://developers.google.com/protocol-buffers/)
 
 输入一段文本，返回这句话可能有的语法错误。比如输入 i do not play the football，返回 冠词使用错误：在the football 中应删除冠词the
 
@@ -19,7 +19,7 @@ Dependency: 需要配置grpc和protobuf
 
 参考代码：
 
-```
+```python
 """The Python implementation of the GRPC grammar_service.GrammarService client."""
 
 import grpc
@@ -42,7 +42,7 @@ if __name__ == '__main__':
 ```
 
 ### 2)语义相似度计算服务
-Dependency: 需要配置grpc和protobuf
+Dependency: 需要配置 [grpc](http://www.grpc.io/) 和 [protobuf](https://developers.google.com/protocol-buffers/)
 
 输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.777210439668(相似度值落在[0,1]区间内，值越大表示越相似)
 
@@ -50,7 +50,7 @@ Dependency: 需要配置grpc和protobuf
 
 
 参考代码：
-```
+```python
 """The Python implementation of the GRPC semantic_sim.SemanticSim client."""
 
 import grpc
@@ -102,7 +102,7 @@ META是一个JSON结构,比如:{code:0, msg:"ok", key:"messageid", val:base64(js
  
 下面是C/C++ 请求的例子，websocket使用Poco library
 
-```
+```cpp
 std::ifstream meta_ifs;
 meta_ifs.open(meta_file.c_str());
 std::stringstream ss;
@@ -155,7 +155,7 @@ free(recv_buf);
 ```
 
 META文件内容:
-```
+```json
 {
     "quality":-1,
     "type":"asr"
@@ -167,20 +167,20 @@ META文件内容:
 返回结果：
 ```
 {
-   "confidence" : 84, //整体置信度
-   "decoded" : "hackers weekend ", //整体识别结果
-   "details" : [
+   "confidence": 84, //整体置信度
+   "decoded": "hackers weekend ", //整体识别结果
+   "details": [
       {
-         "confidence" : 97, //识别的置信度0~100，数值越大表明越可信
-         "end" : 171, //单词结束时间
-         "start" : 111, //单词起始时间
-         "word" : "hackers" //识别出的单词
+         "confidence": 97, //识别的置信度0~100，数值越大表明越可信
+         "end": 171, //单词结束时间
+         "start": 111, //单词起始时间
+         "word": "hackers" //识别出的单词
       },
       {
-         "confidence" : 70,
-         "end" : 177,
-         "start" : 171,
-         "word" : "weekend"
+         "confidence": 70,
+         "end": 177,
+         "start": 171,
+         "word": "weekend"
       }
    ]
 }
@@ -191,9 +191,9 @@ META文件内容:
 META文件内容
 ```
 {
-    "quality":-1,
-    "type":"readaloud",
-    "reftext":"hello nice to meet you" //要评分的句子的文本，去掉标点符号，全部转换成小写
+    "quality": -1,
+    "type": "readaloud",
+    "reftext": "hello nice to meet you" //要评分的句子的文本，去掉标点符号，全部转换成小写
 }
 ```
 
