@@ -55,5 +55,5 @@ var server = app.listen(8080, function() {
   var port = server.address().port;
 
   console.log("mock server started");
+  console.log("Visit: http://localhost:8080/asr.html");
 });
-
