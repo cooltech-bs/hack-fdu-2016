@@ -153,6 +153,7 @@ ofs.close();
 m_psock->close();
 free(recv_buf);
 ```
+[JS example](https://github.com/lingochamp/hack-fdu-2016/tree/master/js-asr)
 
 META文件内容:
 ```json
