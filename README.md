@@ -1,84 +1,7 @@
-# hack-fdu-2016
-API instructions and examples for hack-fdu-2016
+# hack-sjtu-2017
+API instructions and examples for hack-sjtu-2017
 
-### 1)语法检错服务
-Dependency: 需要配置 [grpc](http://www.grpc.io/) 和 [protobuf](https://developers.google.com/protocol-buffers/)
-
-输入一段文本，返回这句话可能有的语法错误。比如输入 i do not play the football，返回 冠词使用错误：在the football 中应删除冠词the
-
-[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/grammar_res/grammar_service.proto)
-
-返回结果(样例)：
-```
-输入：There is a lot of book.
-输出（Unicode）: 主谓一致错误:There is a中的is。
-
-```
-
-服务器/端口号：54.222.198.42:50054
-
-参考代码：
-
-```python
-"""The Python implementation of the GRPC grammar_service.GrammarService client."""
-
-import grpc
-import grammar_service_pb2
-
-_TIMEOUT_SECONDS = 10
-
-def grammar_correct():
-    channel = grpc.insecure_channel('%s:%d' % ('0.0.0.0', 50054))
-    stub = grammar_service_pb2.GrammarServiceStub(channel)
-    while True:
-        txt = raw_input("Input>>>")
-        if txt == 'exit': break
-        response = stub.GrammarCorrect(grammar_service_pb2.GrammarCorrectRequest(content = txt, error_type = ""), _TIMEOUT_SECONDS)
-        print "Correct result", response.message
-
-if __name__ == '__main__':
-    grammar_correct()
-
-```
-
-### 2)语义相似度计算服务
-Dependency: 需要配置 [grpc](http://www.grpc.io/) 和 [protobuf](https://developers.google.com/protocol-buffers/)
-
-输入两句话，返回这两句话在语义上的相似度。比如输入Obama speaks to the media in Illinois 和 The President addresses the press in Chicago，返回 0.777210439668(相似度值落在[0,1]区间内，值越大表示越相似)
-
-[proto file](https://github.com/yxf0605/hack-fdu-2016/blob/master/semantic_res/semantic_sim.proto)
-
-
-参考代码：
-```python
-"""The Python implementation of the GRPC semantic_sim.SemanticSim client."""
-
-import grpc
-import semantic_sim_pb2
-
-_TIMEOUT_SECONDS = 10
-
-def get_similarity(sent_pair):
-    channel = grpc.insecure_channel('%s:%d' % ('0.0.0.0', 50067))
-    stub = semantic_sim_pb2.SemanticSimStub(channel)
-    response = stub.Communicate(semantic_sim_pb2.ASRRequest(message=sent_pair), _TIMEOUT_SECONDS)
-    print "Similarity: " + response.message
-
-if __name__ == '__main__':
-    sent1 = raw_input('Sentence 1: ')
-    sent2 = raw_input('Sentence 2: ')
-    sent_pair = sent1+'###'+sent2
-    get_similarity(sent_pair) 
-
-```
-
-服务器/端口号：54.222.198.42:50067
-
-返回结果格式：
-```
-浮点数的 unicode 字符串格式
-```
-### 3)语音识别服务
+### 1)语音识别服务
 目前支持英语的ASR，支持的音频格式是 16k 采样率，mono wav
 
 语音数据使用HTTP请求，以stream方式上传到服务器，遵循的协议格式如下
@@ -163,7 +86,7 @@ META文件内容:
 }
 ```
 
-服务器/端口/URL: 54.223.187.43:8281 /llcup/stream/upload
+服务器/端口/URL: wss://rating.llsstaging.com/llcup/stream/upload
 
 返回结果：
 ```
@@ -187,7 +110,7 @@ META文件内容:
 }
 ```
 
-### 4)句子评分服务
+### 2)句子评分服务
 语音数据的请求方式和语音识别一样，唯一不同的地方是传入的META文件内容不同
 META文件内容
 ```
@@ -198,6 +121,6 @@ META文件内容
 }
 ```
 
-服务器/端口/URL: 54.223.187.43:8281 /llcup/stream/upload
+服务器/端口/URL: wss://rating.llsstaging.com/llcup/stream/upload
 
 [返回结果](https://github.com/yxf0605/hack-fdu-2016/blob/master/readaloud.json)
