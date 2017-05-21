@@ -1,0 +1,16 @@
+{
+  "name": "lls-recorder-web",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.13.3",
+    "knockout": "^3.3.0",
+    "ws": "^1.1.1"
+  }
+}
