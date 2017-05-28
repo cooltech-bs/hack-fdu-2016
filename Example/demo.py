@@ -79,8 +79,9 @@ def Voice2Text(file):
     :param file: 音频文件,要求wav格式
     :return: 字符串
     """
-    downsampleWav(file,'out.wav')
-    先更改格式
+    if file!="":
+        downsampleWav(file,'out.wav')
+    #先更改格式
     file='out.wav'
     META = """
     {
@@ -98,18 +99,21 @@ def Voice2Text(file):
 
     with open(file, 'rb') as f:
         ws.send(f.read())
-    ws.send(base64.standard_b64encode(EOS))
 
     data = ws.recv()
-    data=data[4:]
-    print data
-    #{"status":0,"msg":"","reqId":"","key":"3415fadb2ddc6a8c435e589bafb8583e","result":"d2VsY29tZSB0byBiZWlqaW5n","flag":0}
-    # print data,'\n',data[data.find('result')+9:data.find('flag":')-3]
-    # print base64.b64decode(data[data.find('result')+9:data.find('flag":')-3])
+    """中间结果
+    {"status":0,"msg":"","reqId":"","key":"bb0541c80e196328727c67503fb858ff","result":"ZmluZCB0aGUgc2xlZXBpbmcgc3R1ZGVudHM=","flag":0}
+    """
+    ws.send(EOS)
+    data = ws.recv()
+
+    """最终结果。
+    {"status":0,"msg":"","reqId":"","key":"bb0541c80e196328727c67503fb858ff","result":"ewogICAiY29uZmlkZW5jZSIgOiA2OCwKICAgImRlY29kZWQiIDogImZpbmQgYSBzbGVlcHkgc3R1ZGVudHMiLAogICAiZGV0YWlscyIgOiBbCiAgICAgIHsKICAgICAgICAgImNvbmZpZGVuY2UiIDogODAsCiAgICAgICAgICJlbmQiIDogMTM4LAogICAgICAgICAic3RhcnQiIDogNzgsCiAgICAgICAgICJ3b3JkIiA6ICJmaW5kIgogICAgICB9LAogICAgICB7CiAgICAgICAgICJjb25maWRlbmNlIiA6IDQwLAogICAgICAgICAiZW5kIiA6IDE1OSwKICAgICAgICAgInN0YXJ0IiA6IDE0MSwKICAgICAgICAgIndvcmQiIDogImEiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAgImNvbmZpZGVuY2UiIDogNTMsCiAgICAgICAgICJlbmQiIDogMjM3LAogICAgICAgICAic3RhcnQiIDogMTU5LAogICAgICAgICAid29yZCIgOiAic2xlZXB5IgogICAgICB9LAogICAgICB7CiAgICAgICAgICJjb25maWRlbmNlIiA6IDk5LAogICAgICAgICAiZW5kIiA6IDMxOCwKICAgICAgICAgInN0YXJ0IiA6IDI0MCwKICAgICAgICAgIndvcmQiIDogInN0dWRlbnRzIgogICAgICB9CiAgIF0KfQo=","flag":1}
+    """
+
+    #print base64.b64decode(data[data.find('result')+9:data.find('flag":')-3])
     return base64.b64decode(data[data.find('result')+9:data.find('flag":')-3])
 
 
-
-
-# if __name__ == '__main__':
-#     Voice2Text("")
+if __name__ == '__main__':
+    Voice2Text("")
